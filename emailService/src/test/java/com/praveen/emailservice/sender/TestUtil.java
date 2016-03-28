@@ -7,7 +7,7 @@ import com.praveen.emailservice.EmailMessage;
 
 public class TestUtil {
 	public static EmailMessage getValidEmail() {
-		String fromEmail = "abc@test.com";
+		String fromEmail = "praveensugavanam@gmail.com";
 		String toEmail1 = "xyz@test.com";
 		String toEmail2 = "qwe@test.com";
 		String subject = "This is a test subject";

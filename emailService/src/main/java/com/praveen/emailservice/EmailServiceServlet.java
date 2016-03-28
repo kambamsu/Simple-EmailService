@@ -23,7 +23,7 @@ import com.praveen.emailservice.sender.EmailSenderFactory;
  * This class will serve the requests from the client and call the corresponding
  * email sender and respond according to whether or not the email was sent
  * 
- * @author sugavana
+ * @author Praveen
  *
  */
 public class EmailServiceServlet extends HttpServlet {
@@ -70,8 +70,8 @@ public class EmailServiceServlet extends HttpServlet {
 			//sender is being used to send the email.
 			final EmailSender sender = EmailSenderFactory.getPrimaryEmailSender();
 			email = createEmailMessageFromRequest(req);
-
 			isSendSuccessful = sender.sendEmail(email);
+			//we fallback if first send is not successful
 			if (!isSendSuccessful) {
 				final EmailSender secondarySender = EmailSenderFactory.getFallbackEmailSender();
 				isSendSuccessful = secondarySender.sendEmail(email);
@@ -95,14 +95,10 @@ public class EmailServiceServlet extends HttpServlet {
 	 */
 	public void updateClientResponse(final boolean isSendSuccessful, final String errorMessage,
 			final HttpServletResponse resp) throws IOException {
-		resp.setContentType("text/plain");
 		if (isSendSuccessful) {
-			resp.getWriter().println("Email sent successfully! \n\n");
+			resp.sendRedirect("Success.html");
 		} else {
-			if (errorMessage != null && !errorMessage.equals("")) {
-				resp.getWriter().println(errorMessage);
-			}
-			resp.getWriter().println("Email sending was not successful.\n");
+			resp.sendRedirect("Failure.html");
 		}
 
 	}
@@ -112,6 +108,7 @@ public class EmailServiceServlet extends HttpServlet {
 	 * 
 	 * @param req
 	 * @return an object of type EmailMessage formed from the client request.
+	 *  
 	 */
 	public EmailMessage createEmailMessageFromRequest(final HttpServletRequest req) {
 		String fromEmail = req.getParameter(FROM_EMAIL);
@@ -121,22 +118,26 @@ public class EmailServiceServlet extends HttpServlet {
 			toEmails = new ArrayList<String>();
 			String[] toAddresses = toList.split(",");
 			for (String to : toAddresses) {
-				toEmails.add(to.trim());
+				toEmails.add(to);
 			}
 		}
-
 		List<String> ccEmails = null;
 		String ccList = req.getParameter(CC_LIST);
-		if (ccList != null) {
+		if (ccList != null && !ccList.equals("")) {
 			ccEmails = new ArrayList<String>();
 			String[] ccAddresses = ccList.split(",");
 			for (String cc : ccAddresses) {
-				ccEmails.add(cc.trim());
+				if (! cc.equals("") && !! cc.trim().equals("")) {
+					ccEmails.add(cc);
+				}
+			}
+			if (ccEmails.size() == 0) {
+				ccEmails = null;
 			}
 		}
 		String emailSubject = req.getParameter(EMAIL_SUBJECT);
 		String emailBody = req.getParameter(EMAIL_BODY);
-
-		return new EmailMessage(fromEmail, toEmails, ccEmails, emailSubject, emailBody);
+		EmailMessage em = new EmailMessage(fromEmail, toEmails, ccEmails, emailSubject, emailBody);
+		return em;
 	}
 }

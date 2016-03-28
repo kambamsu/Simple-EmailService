@@ -9,7 +9,7 @@ public class EmailMessage {
 	final String messageBody;
 	final String messageSubject;
 	final boolean isValid;
-
+	
 	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
@@ -31,6 +31,7 @@ public class EmailMessage {
 		messageBody = msgBody;
 		messageSubject = msgSubject;
 		isValid = isValidEmail();
+		//error = ccReceipient.size() + "";
 	}
 
 	public String getFromEmail() {
@@ -52,7 +53,7 @@ public class EmailMessage {
 	public String getEmailMessageBody() {
 		return messageBody;
 	}
-
+	
 	public boolean isValid() {
 		return isValid;
 	}

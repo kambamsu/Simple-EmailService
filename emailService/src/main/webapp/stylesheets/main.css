@@ -1,23 +1,50 @@
-div#banner { 
-   position: absolute; 
-   top: 0; 
-   left: 0; 
-   background-color: #000000; 
-   width: 100%; 
- }
- div#banner-content { 
-   width: 800px; 
-   margin: 0 auto; 
-   padding: 10px; 
-   border: 1px solid #000;
- }
- div#main-content { 
-   padding-top: 70px;
+@import "http://fonts.googleapis.com/css?family=Ubuntu";
+body{
+margin:0;
+padding:0;
+font-family:'Ubuntu',sans-serif
 }
+#first{
+width:400px;
+height:650px;
+box-shadow:0 0 15px rgba(14,41,57,0.12),0 2px 5px rgba(14,41,57,0.44),inset 0 -1px 2px rgba(14,41,57,0.15);
+float:left;
+padding:10px 50px 0;
+background-image:url(../images/1.jpg);
+margin:2% 30%;
+border-radius:5px
+}
+hr{
+border-top:1px solid #ccc;
+margin-bottom:30px
+}
+span{
+float:left;
+font-size:15px
+}
+span.spn1{
+margin-top:11px
+}
+
+
+
 input[type="text"] {
   display: block;
   margin: 0;
-  width: 40%; 
+  width: 70%; 
+  font-family: sans-serif;
+  font-size: 12px;
+  appearance: none;
+  border-radius: none;
+  padding: 10px;
+  border: solid 5px #c9c9c9;
+  box-shadow: inset 0 0 0 1px #707070;
+  transition: box-shadow 0.3s, border 0.3s;
+}
+input[type="email"] {
+  display: block;
+  margin: 0;
+  width: 70%; 
   font-family: sans-serif;
   font-size: 12px;
   appearance: none;
@@ -30,7 +57,7 @@ input[type="text"] {
 textarea {
   display: block;
   margin: 0;
-  width: 40%;
+  width: 70%;
   font-family: sans-serif;
   font-size: 12px;
   appearance: none;
@@ -39,6 +66,15 @@ textarea {
   border: solid 5px #c9c9c9;
   box-shadow: inset 0 0 0 1px #707070;
   transition: box-shadow 0.3s, border 0.3s;
+}
+.submit{
+width:100px;
+margin-left:83px;
+padding:10px;
+margin-top:10px;
+background:linear-gradient(#A4A4A4,#424242);
+color:#fff;
+font-weight:700
 }
 input[type="text"]:focus {
   outline: none;
@@ -74,12 +110,7 @@ input[type="text"]:focus {
 	border:1px solid #1A87B9
 }  
 
-#fromEmail{
-    background-image: url(http://rexkirby.com/kirbyandson/images/name.svg);
-    background-size: 30px 30px;
-    background-position: 11px 8px;
-    background-repeat: no-repeat;
-}
+
 
 #main { 
     width: 40%;

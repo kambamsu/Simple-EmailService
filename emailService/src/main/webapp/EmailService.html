@@ -14,45 +14,36 @@
 	
 </script>
 <body>
-	<div id="banner" style="display:none">
-		<div id="banner-content">Uber Email Service</div>
-	</div>
-	
+	<div id="first">
+		<h1>Simple Email Service</h1>
 		<div id="emailformdiv" align="center">
 			<form action="emailservice" method="POST">
-				<div id="main">
-					<div id="sidebar">
-						<label class="formlabel" for="from-name">From</label>
-					</div>
-					<div id="page-wrap">
-						<input type="text" id="fromEmail" name="fromEmail"
+					<span class="spn1">From :</span>&nbsp;<br /><br />
+					<input type="email" required id="fromEmail" name="fromEmail"
 							placeholder="Your Email" class="input-list style-3 clearfix">
-					</div>
-				</div>
-				<div id="fromEmailError" style="display:none">
-					<label class="formlabel" for="from-name">From Email Address
-						is not a valid email.</label>
-				</div>
-
-				<br /> To Email(comma separated): <input type="text" name="toEmail"
+					
+					
+					<span class="spn1">To :</span>&nbsp;<br /><br />
+					<input type="email" required multiple name="toEmail"
 					id="toEmail" placeholder="To Email (comma separated)"
-					class="input-list style-3 clearfix" /> <br /> CC (comma
-				separated):
-				<div id="toEmailError" style="display:none">
-					<label class="formlabel" for="from-name">From Email Address
-						is not a valid email.</label>
-				</div>
-				<input type="text" name="ccEmail" id="ccEmail"
-					class="input-list style-3 clearfix" /> <br /> Subject: <input
-					type="text" name="emailSubject" id="emailSubject"
-					placeholder="Subject" class="input-list style-3 clearfix" /> <br />
-				Message Body:
-				<textarea rows="10" cols="100" name="emailBody" id="emailBody"
+					class="input-list style-3 clearfix" />
+					
+					
+				<span class="spn1">CC :</span>&nbsp;<br />	<br />	
+				<input type="email" name="ccEmail" multiple id="ccEmail" placeholder="CC Email (comma separated) - Optional"
+					class="input-list style-3 clearfix" />
+					
+				<span class="spn1">Subject :</span>&nbsp;<br /> <br />
+				<input
+					type="text" name="emailSubject" id="emailSubject" required
+					placeholder="Subject" class="input-list style-3 clearfix" />
+				<span class="spn1">Body :</span>&nbsp;<br /><br />
+				<textarea rows="8" cols="100" name="emailBody" required id="emailBody"
 					placeholder="Message Contents" class="input-list style-3 clearfix"></textarea>
-				<input type="submit" value="Send" class="styled-button"
-					onClick="return checkemail();" />
+				<input type="submit" value="Send" class="submit"
+					onClick="" />
 			</form>
 		</div>
-
+	</div>
 </body>
 </html>
